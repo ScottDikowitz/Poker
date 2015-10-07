@@ -5,6 +5,7 @@ describe Hand do
   let(:pair_hand) { [Card.new(1, 1), Card.new(2, 1), Card.new(1, 2), Card.new(5, 1), Card.new(6, 0)]  }
   let(:three_hand) { [Card.new(1, 1), Card.new(1, 0), Card.new(1, 2), Card.new(5, 1), Card.new(6, 0)]  }
   let(:two_p_hand) { [Card.new(1, 1), Card.new(5, 0), Card.new(1, 2), Card.new(5, 1), Card.new(6, 0)]  }
+  let(:straight_hand) { [Card.new(6, 1), Card.new(2, 0), Card.new(3, 2), Card.new(4, 1), Card.new(5, 0)]  }
 
   describe "#pair?" do
 
@@ -50,6 +51,22 @@ describe Hand do
       hand = Hand.new(three_hand)
       expect(hand.two_pairs?).to eq(false)
     end
+
+  end
+
+  describe "#straight?" do
+
+    it "should return true if it's a straight" do
+      hand = Hand.new(straight_hand)
+      expect(hand.straight?).to eq(true)
+    end
+
+    it "should should return false if not a straight" do
+      hand = Hand.new(pair_hand)
+      expect(hand.straight?).to eq(false)
+    end
+
+    it "should return true if ace is at beginning or end or a straight"
 
   end
 
